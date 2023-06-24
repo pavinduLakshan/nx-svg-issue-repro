@@ -1,0 +1,68 @@
+{
+    "name": "react-components",
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
+    "sourceRoot": "modules/react-components/src",
+    "projectType": "library",
+    "generators": {},
+    "prefix": "nms",
+    "tags": [],
+    "targets": {
+        "build": {
+            "executor": "@nx/rollup:rollup",
+            "outputs": ["{options.outputPath}"],
+            "options": {
+                "outputPath": "modules/react-components/dist",
+                "tsConfig": "modules/react-components/tsconfig.lib.json",
+                "project": "modules/react-components/package.json",
+                "entryFile": "modules/react-components/src/index.ts",
+                "external": ["react/jsx-runtime"],
+                "format": ["esm", "cjs"],
+                "rollupConfig": "modules/react-components/rollup.config.cjs",
+                "compiler": "babel"
+            }
+        },
+        "lint": {
+            "executor": "nx:run-commands",
+            "options": {
+                "command": "pnpm lint",
+                "cwd": "modules/react-components",
+                "parallel": false
+            }
+        },
+        "test": {
+            "executor": "nx:run-commands",
+            "options": {
+                "command": "pnpm test",
+                "cwd": "modules/react-components",
+                "parallel": false
+            }
+        },
+        "storybook": {
+            "executor": "@nx/storybook:storybook",
+            "options": {
+                "port": 6006,
+                "quiet": false,
+                "configDir": "modules/react-components/.storybook",
+                "docs": true
+            },
+            "configurations": {
+                "ci": {
+                    "quiet": true
+                }
+            }
+        },
+        "build-storybook": {
+            "executor": "@nx/storybook:build",
+            "outputs": ["{options.outputDir}"],
+            "options": {
+                "configDir": "modules/react-components/.storybook",
+                "outputDir": "modules/react-components/dist/storybook"
+            },
+            "configurations": {
+                "ci": {
+                    "quiet": true
+                }
+            }
+        }
+    }
+}

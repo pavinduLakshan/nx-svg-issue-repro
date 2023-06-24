@@ -1,0 +1,10 @@
+{
+    "theme": {
+        "name": "default",
+        "base": "light",
+        "colorSecondary": "#ff5000",
+        "brandTitle": "example ${version}",
+        "brandUrl": "https://example.com",
+        "brandTarget": "_blank"
+    }
+}
